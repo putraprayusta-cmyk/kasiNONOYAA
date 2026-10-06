@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Royal Casino - Simulasi Game Kasino & Hiburan Virtual 100% Gratis Tanpa Uang Asli. Nikmati Slot Kakek Zeus (Gates of Olympus), Mines Bom, Plinko, Spaceman Crash, Togel Buku Mimpi, Blackjack, Roulette, Baccarat, Video Poker, Sic Bo, dan Dragon Tiger.">
+  <title>Royal Casino - VIP Social Casino & Virtual Simulator</title>
+
+  <!-- Google Fonts: Playfair Display, Orbitron, & Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Orbitron:wght@600;800;900&family=Playfair+Display:ital,wght@0,600;0,800;1,700&family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ==========================================================================
+       HEADER
+       ========================================================================== -->
+  <header>
+    <div class="brand" onclick="app.showLobby()">
+      <div class="brand-icon">👑</div>
+      <div class="brand-text">
+        <h1>ROYAL CASINO VIP</h1>
+        <span>Social Simulator 100% Gratis</span>
+      </div>
+    </div>
+
+    <div class="header-controls">
+      <div class="chip-badge" title="Saldo Chip Virtual">
+        <div class="chip-icon">◈</div>
+        <span class="chip-amount" id="headerChipDisplay">1,000</span>
+      </div>
+
+      <button class="btn-header" id="btnAudioToggle" onclick="audioSys.toggleMute()" title="Nyalakan/Matikan Suara">
+        <span id="audioIcon">🔊</span>
+      </button>
+
+      <button class="btn-header" onclick="app.openHistoryModal()" title="Lihat 10 Riwayat Terakhir">
+        <span>📜 <span class="btn-label">Riwayat</span></span>
+      </button>
+
+      <button class="btn-header" onclick="app.resetChips()" title="Reset Saldo ke 1.000 Chip">
+        <span>🔄 <span class="btn-label">Reset</span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN VIEW CONTAINER
+       ========================================================================== -->
+  <main>
+
+    <!-- ==================== 1. LOBBY VIEW (12 Games) ==================== -->
+    <section id="viewLobby" class="view-section active">
+      <div class="hero-banner">
+        <div class="hero-badge">Simulasi Kasino & Game Viral Populer</div>
+        <h2 class="hero-title">Pilih 12 Koleksi Game Kasino Terbaik</h2>
+        <p class="hero-subtitle">Mulai dari Slot Kakek Zeus x500, Tambang Mines, Plinko, Spaceman Crash, hingga Togel
+          Mimpi dan Baccarat. 100% chip virtual untuk hiburan tanpa risiko uang asli!</p>
+
+        <div class="lobby-filter-tabs">
+          <button class="lobby-tab-btn active" onclick="app.filterLobby('all', this)">Semua (12)</button>
+          <button class="lobby-tab-btn" onclick="app.filterLobby('viral', this)">🔥 Viral Judol</button>
+          <button class="lobby-tab-btn" onclick="app.filterLobby('slots', this)">🎰 Slot</button>
+          <button class="lobby-tab-btn" onclick="app.filterLobby('table', this)">🃏 Meja Kasino</button>
+          <button class="lobby-tab-btn" onclick="app.filterLobby('dice', this)">🎲 Dadu & Angka</button>
+        </div>
+      </div>
+
+      <div class="games-grid" id="lobbyGamesGrid">
+        <!-- 1. GATES OF OLYMPUS (Slot Kakek Zeus Petir x500) -->
+        <div class="game-card hot-card" data-cat="viral slots" onclick="app.openGame('olympus')">
+          <div class="game-tag-badge" style="background:#ef4444; color:#fff;">⚡ #1 PALING POPULER</div>
+          <div class="game-card-icon">⚡👑</div>
+          <h3 class="game-card-title">Gates of Olympus (Zeus)</h3>
+          <p class="game-card-desc">Slot 6x5 Runtuh (Tumble) Kakek Zeus! Sambaran Petir Merah x500 & Scatter 15x Free
+            Spins!</p>
+          <button class="btn-play" style="background: linear-gradient(135deg, #f59e0b, #ef4444); color:#fff;">Main Kakek
+            Zeus</button>
+        </div>
+
+        <!-- 2. MINES (Kasino Tambang Bom) -->
+        <div class="game-card featured-purple" data-cat="viral" onclick="app.openGame('mines')">
+          <div class="game-tag-badge" style="background:#8b5cf6; color:#fff;">💣 SENSASIONAL VIRAL</div>
+          <div class="game-card-icon">💎💣</div>
+          <h3 class="game-card-title">Mines (Tambang Bom)</h3>
+          <p class="game-card-desc">Buka 25 kotak berlian! Hindari bom tersembunyi dan ambil kemenangan (Cash Out)
+            sebelum meledak!</p>
+          <button class="btn-play" style="background: linear-gradient(135deg, #8b5cf6, #ec4899); color:#fff;">Main
+            Mines</button>
+        </div>
+
+        <!-- 3. PLINKO (Piramida Pin & Bola Pantul) -->
+        <div class="game-card featured-cyan" data-cat="viral" onclick="app.openGame('plinko')">
+          <div class="game-tag-badge" style="background:#06b6d4; color:#fff;">🔴 FISIKA 1000x MAX</div>
+          <div class="game-card-icon">🔴🔺</div>
+          <h3 class="game-card-title">Plinko Physics</h3>
+          <p class="game-card-desc">Jatuhkan bola melalui piramida pin! Awas jatuh ke samping (0x) atau raih hingga
+            1000x di sudut tepi!</p>
+          <button class="btn-play" style="background: linear-gradient(135deg, #06b6d4, #3b82f6); color:#fff;">Main
+            Plinko</button>
+        </div>
+
+        <!-- 4. SPACEMAN CRASH -->
+        <div class="game-card featured-purple" data-cat="viral" onclick="app.openGame('spaceman')">
+          <div class="game-tag-badge" style="background:#a855f7; color:#fff;">🚀 CRASH GAME</div>
+          <div class="game-card-icon">🚀🌌</div>
+          <h3 class="game-card-title">Spaceman Crash</h3>
+          <p class="game-card-desc">Astronot terbang meluncur menembus galaksi! Ambil chip sebelum astronot jatuh!</p>
+          <button class="btn-play" style="background: linear-gradient(135deg, #a855f7, #6366f1); color:#fff;">Main
+            Spaceman</button>
+        </div>
+
+        <!-- 5. DUO FU DUO CAI (Slot Rezeki Gentong Emas) -->
+        <div class="game-card hot-card" data-cat="viral slots" onclick="app.openGame('duofu')">
+          <div class="game-tag-badge" style="background:#ef4444; color:#fff;">🧧 JACKPOT GENTONG EMAS</div>
+          <div class="game-card-icon">🧧🏮</div>
+          <h3 class="game-card-title">Duo Fu Duo Cai (Duofu)</h3>
+          <p class="game-card-desc">Slot 5x3 legendaris oriental! Kumpulkan Wild Fu untuk picu Jackpot Gentong Emas &
+            Scatter 10x Free Spins!</p>
+          <button class="btn-play" style="background: linear-gradient(135deg, #f59e0b, #b91c1c); color:#fff;">Main Duo
+            Fu Duo Cai</button>
+        </div>
+
+        <!-- 6. DRAGON TIGER -->
+        <div class="game-card" data-cat="table" onclick="app.openGame('dragontiger')">
+          <div class="game-tag-badge" style="background:#ef4444; color:#fff;">🐉 VS 🐯 DUEL CEPAT</div>
+          <div class="game-card-icon">🐉🐯</div>
+          <h3 class="game-card-title">Dragon Tiger</h3>
+          <p class="game-card-desc">Pertarungan 1 kartu kilat antara Naga dan Harimau! Taruhan Naga, Harimau, atau Seri
+            50:1!</p>
+          <button class="btn-play">Main Dragon Tiger</button>
+        </div>
+
+        <!-- 7. SLOT MACHINE CLASSIC -->
+        <div class="game-card" data-cat="slots" onclick="app.openGame('slot')">
+          <div class="game-card-icon">🎰</div>
+          <h3 class="game-card-title">Golden 7s Slot</h3>
+          <p class="game-card-desc">Putar 3 rel klasik retro dengan jackpot 777 hingga 100x taruhan!</p>
+          <button class="btn-play">Main Slot 777</button>
+        </div>
+
+        <!-- 8. BLACKJACK 21 -->
+        <div class="game-card" data-cat="table" onclick="app.openGame('blackjack')">
+          <div class="game-card-icon">🃏</div>
+          <h3 class="game-card-title">Blackjack 21</h3>
+          <p class="game-card-desc">Hit, Stand, atau Double Down! Kalahkan dealer virtual dengan kartu 21.</p>
+          <button class="btn-play">Main Blackjack</button>
+        </div>
+
+        <!-- 9. EUROPEAN ROULETTE -->
+        <div class="game-card" data-cat="table" onclick="app.openGame('roulette')">
+          <div class="game-card-icon">🎡</div>
+          <h3 class="game-card-title">European Roulette</h3>
+          <p class="game-card-desc">Putar roda 37 angka! Pasang chip di Merah/Hitam, Ganjil/Genap, atau Single Number
+            35:1!</p>
+          <button class="btn-play">Main Roulette</button>
+        </div>
+
+        <!-- 10. BACCARAT PUNTO BANCO -->
+        <div class="game-card" data-cat="table" onclick="app.openGame('baccarat')">
+          <div class="game-card-icon">🎴</div>
+          <h3 class="game-card-title">Baccarat Punto Banco</h3>
+          <p class="game-card-desc">Tebak Player atau Banker yang mendekati angka 9, atau pasang Seri (Tie 8:1)!</p>
+          <button class="btn-play">Main Baccarat</button>
+        </div>
+
+        <!-- 11. VIDEO POKER -->
+        <div class="game-card" data-cat="table" onclick="app.openGame('poker')">
+          <div class="game-card-icon">👑</div>
+          <h3 class="game-card-title">Video Poker (Jacks+)</h3>
+          <p class="game-card-desc">Tahan kartu terbaik dan raih kombinasi Royal Flush dengan payout 800x!</p>
+          <button class="btn-play">Main Video Poker</button>
+        </div>
+
+        <!-- 12. LUCKY SIC BO -->
+        <div class="game-card" data-cat="dice" onclick="app.openGame('sicbo')">
+          <div class="game-card-icon">🎲</div>
+          <h3 class="game-card-title">Lucky Sic Bo (3 Dadu)</h3>
+          <p class="game-card-desc">Guncang cangkir dadu emas! Pasang Besar, Kecil, Ganjil, Genap, atau Any Triple 30:1!
+          </p>
+          <button class="btn-play">Main Sic Bo</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 2. GATES OF OLYMPUS VIEW ==================== -->
+    <section id="viewOlympus" class="view-section">
+      <div class="game-wrapper" style="border-color:#a855f7;">
+        <div class="game-header-bar">
+          <button class="btn-back" onclick="app.showLobby()">← Kembali ke Lobby</button>
+          <div class="game-current-title" style="color:#facc15;">⚡ Gates of Olympus (Kakek Zeus x500)</div>
+          <div class="header-spacer"></div>
+        </div>
+
+        <div class="olympus-container">
+          <div class="fs-banner" id="zeusFsBanner">🔥 MODE FREE SPINS: SISA <span id="zeusFsCount">15</span> PUTARAN!
+            TOTAL MULTIPLIER: <span id="zeusFsMult">0x</span></div>
+
+          <div class="olympus-stage">
+            <div class="zeus-sidebar">
+              <div class="zeus-avatar-img" id="zeusAvatar">👴⚡</div>
+              <div class="zeus-name">KAKEK ZEUS</div>
+              <p style="font-size:0.7rem; color:var(--text-muted);">Dewa Petir Olympus</p>
+
+              <div class="zeus-multiplier-accumulated">
+                <div class="zeus-mult-title">Multiplier Ronde</div>
+                <div class="zeus-mult-val" id="zeusRoundMultDisplay">1x</div>
+              </div>
+
+              <button class="btn-buy-spin" id="btnBuySpinZeus" onclick="olympusGame.buyFreeSpins()">
+                ⚡ BELI FREE SPINS<br><span style="font-size:0.65rem;">(100x Taruhan)</span>
+              </button>
+            </div>
+
+            <div class="olympus-grid-wrapper">
+              <div class="olympus-grid" id="olympusGrid"></div>
+            </div>
+          </div>
+
+          <div class="result-banner" id="olympusResultBanner">Pasang taruhan dan klik SPIN ZEUS! Simbol 8+ di mana saja
+            akan meledak!</div>
+
+          <div class="bet-control-panel" style="width: 100%; max-width: 950px;">
+            <div class="bet-selector">
+              <span class="bet-selector-label">Taruhan:</span>
+              <div class="bet-chips">
+                <button class="chip-btn active" data-val="10" onclick="olympusGame.setBet(10)">10</button>
+                <button class="chip-btn" data-val="50" onclick="olympusGame.setBet(50)">50</button>
+                <button class="chip-btn" data-val="100" onclick="olympusGame.setBet(100)">100</button>
+                <button class="chip-btn" data-val="500" onclick="olympusGame.setBet(500)">500</button>
+              </div>
+            </div>
+
+            <button class="btn-action" id="btnSpinOlympus" onclick="olympusGame.spin()"
+              style="padding:12px 36px; font-size:1.1rem; background:linear-gradient(135deg, #fbbf24, #ef4444); color:#fff;">
+              ⚡ PUTAR ZEUS (10)
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 3. MINES VIEW ==================== -->
+    <section id="viewMines" class="view-section">
+      <div class="game-wrapper" style="border-color:#8b5cf6;">
+        <div class="game-header-bar">
+          <button class="btn-back" onclick="app.showLobby()">← Kembali ke Lobby</button>
+          <div class="game-current-title" style="color:#c084fc;">💣 Mines (Tambang Emas & Bom 5x5)</div>
+          <div class="header-spacer"></div>
+        </div>
+
+        <div class="mines-container">
+          <div class="mines-layout">
+            <div class="mines-config-card">
+              <div>
+                <label style="font-size:0.8rem; color:var(--text-muted); font-weight:700;">JUMLAH BOM (1 - 24):</label>
+                <select id="minesCountSelect" class="dream-input" style="width:100%; margin-top:4px;"
+                  onchange="minesGame.onMinesCountChange()">
+                  <option value="1">1 Bom (Aman)</option>
+                  <option value="3" selected>3 Bom (Standar)</option>
+                  <option value="5">5 Bom (Menantang)</option>
+                  <option value="10">10 Bom (Ekstrem)</option>
+                  <option value="20">20 Bom (Legenda)</option>
+                </select>
+              </div>
+
+              <div
+                style="background:rgba(0,0,0,0.4); padding:10px; border-radius:10px; border:1px solid rgba(255,255,255,0.08);">
+                <div style="font-size:0.75rem; color:var(--text-muted);">Berlian Terbuka: <strong id="minesGemsCount"
+                    style="color:#34d399;">0</strong> / <span id="minesGemsTotal">22</span></div>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Pengali Saat Ini: <strong
+                    id="minesCurrentMult" style="color:#fbbf24; font-family:'Orbitron';">1.00x</strong></div>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Next Tile: <strong
+                    id="minesNextMult" style="color:#60a5fa; font-family:'Orbitron';">1.12x</strong></div>
+              </div>
+
+              <button class="btn-action" id="btnMinesMain" onclick="minesGame.handleMainButton()"
+                style="padding:14px; font-size:1.05rem;">
+                Mulai Taruhan (10 Chip)
+              </button>
+            </div>
+
+            <div>
+              <div class="mines-field" id="minesGrid"></div>
+            </div>
+          </div>
+
+          <div class="result-banner" id="minesResultBanner" style="margin-top:16px;">Tentukan jumlah bom & taruhan, lalu
+            klik MULAI TARUHAN!</div>
+
+          <div class="bet-control-panel" style="width: 100%; max-width: 850px;">
+            <div class="bet-selector">
+              <span class="bet-selector-label">Taruhan:</span>
+              <div class="bet-chips">
+                <button class="chip-btn active" data-val="10" onclick="minesGame.setBet(10)">10</button>
+                <button class="chip-btn" data-val="50" onclick="minesGame.setBet(50)">50</button>
+                <button class="chip-btn" data-val="100" onclick="minesGame.setBet(100)">100</button>
+                <button class="chip-btn" data-val="500" onclick="minesGame.setBet(500)">500</button>
+              </div>
+            </div>
+            <div style="font-size:0.85rem; color:var(--text-muted);">💡 <em>Tips: Ambil Cash Out kapan saja sebelum
+                menyentuh BOM!</em></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 4. PLINKO VIEW ==================== -->
+    <section id="viewPlinko" class="view-section">
+      <div class="game-wrapper" style="border-color:#06b6d4;">
+        <div class="game-header-bar">
+          <button class="btn-back" onclick="app.showLobby()">← Kembali ke Lobby</button>
+          <div class="game-current-title" style="color:#67e8f9;">🔴 Plinko Physics (Piramida Pin 1000x)</div>
+          <div class="header-spacer"></div>
+        </div>
+
+        <div class="plinko-container">
+          <div class="plinko-layout">
+            <div class="mines-config-card">
+              <div>
+                <label style="font-size:0.8rem; color:var(--text-muted); font-weight:700;">TINGKAT RISIKO:</label>
+                <select id="plinkoRiskSelect" class="dream-input" style="width:100%; margin-top:4px;"
+                  onchange="plinkoGame.onSettingsChange()">
+                  <option value="low">Rendah (Aman & Stabil)</option>
+                  <option value="medium" selected>Sedang (Seimbang)</option>
+                  <option value="high">Tinggi (Hadiah Maksimal)</option>
+                </select>
+              </div>
+
+              <div>
+                <label style="font-size:0.8rem; color:var(--text-muted); font-weight:700;">JUMLAH BARIS PIN:</label>
+                <select id="plinkoRowsSelect" class="dream-input" style="width:100%; margin-top:4px;"
+                  onchange="plinkoGame.onSettingsChange()">
+                  <option value="8">8 Baris (Maks 29x)</option>
+                  <option value="12">12 Baris (Maks 170x)</option>
+                  <option value="16" selected>16 Baris (Maks 1.000x)</option>
+                </select>
+              </div>
+
+              <div style="display:flex; flex-direction:column; gap:8px; margin-top:8px;">
+                <button class="btn-action" id="btnDropPlinko1" onclick="plinkoGame.dropBall()"
+                  style="background:linear-gradient(135deg, #06b6d4, #3b82f6); color:#fff;">
+                  🔴 Jatuhkan 1 Bola (10)
+                </button>
+                <button class="btn-action" id="btnDropPlinko5" onclick="plinkoGame.dropMulti(5)"
+                  style="background:linear-gradient(135deg, #ec4899, #8b5cf6); color:#fff; font-size:0.85rem;">
+                  💥 Multi-Drop 5 Bola (50)
+                </button>
+              </div>
+            </div>
+
+            <div class="plinko-canvas-wrapper">
+              <canvas id="plinkoCanvas" width="560" height="420"></canvas>
+            </div>
+          </div>
+
+          <div class="result-banner" id="plinkoResultBanner" style="margin-top:14px;">Klik 'JATUHKAN BOLA' untuk
+            meluncurkan bola melalui piramida pin! Awas jatuh ke samping (0x)!</div>
+
+          <div class="bet-control-panel" style="width: 100%; max-width: 950px;">
+            <div class="bet-selector">
+              <span class="bet-selector-label">Taruhan / Bola:</span>
+              <div class="bet-chips">
+                <button class="chip-btn active" data-val="10" onclick="plinkoGame.setBet(10)">10</button>
+                <button class="chip-btn" data-val="50" onclick="plinkoGame.setBet(50)">50</button>
+                <button class="chip-btn" data-val="100" onclick="plinkoGame.setBet(100)">100</button>
+              </div>
+            </div>
+            <div style="font-size:0.85rem; color:var(--text-muted);">Tanpa dinding pembatas samping: Bola yang terlempar
+              ke jurang samping tidak mendapat apa-apa (0x)!</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 5. DRAGON TIGER VIEW ==================== -->
+    <section id="viewDragonTiger" class="view-section">
+      <div class="game-wrapper" style="border-color:#ef4444;">
+        <div class="game-header-bar">
+          <button class="btn-back" onclick="app.showLobby()">← Kembali ke Lobby</button>
+          <div class="game-current-title" style="color:#f87171;">🐉 Dragon vs 🐯 Tiger</div>
+          <div class="header-spacer"></div>
+        </div>
+
+        <div class="dt-container">
+          <div class="dt-arena">
+            <div class="dt-card-box dragon">
+              <h3 style="color:#ef4444; font-size:1.3rem;">🐉 NAGA (DRAGON)</h3>
+              <div id="dtDragonCard" class="card-item hidden-card" style="width:80px; height:115px; font-size:1rem;">
+              </div>
+              <div style="font-size:0.85rem; color:var(--text-muted);" id="dtDragonValText">Nilai: -</div>
+            </div>
+
+            <div class="dt-card-box tiger">
+              <h3 style="color:#60a5fa; font-size:1.3rem;">🐯 HARIMAU (TIGER)</h3>
+              <div id="dtTigerCard" class="card-item hidden-card" style="width:80px; height:115px; font-size:1rem;">
+              </div>
+              <div style="font-size:0.85rem; color:var(--text-muted);" id="dtTigerValText">Nilai: -</div>
+            </div>
+          </div>
+
+          <div class="result-banner" id="dtResultBanner">Pilih taruhan (Dragon, Tiger, atau Seri) lalu klik BUKA KARTU!
+          </div>
+
+          <div class="dt-spot-grid">
+            <button class="roulette-btn selected" id="dt_dragon"
+              onclick="dtGame.selectBet('dragon', 'Dragon Naga (1:1)')"
+              style="background:#7f1d1d; border-color:#ef4444; padding:12px;">
+              🐉 Dragon<br><small>Bayar 1:1</small>
+            </button>
+            <button class="roulette-btn" id="dt_tiger" onclick="dtGame.selectBet('tiger', 'Tiger Harimau (1:1)')"
+              style="background:#1e3a8a; border-color:#3b82f6; padding:12px;">
+              🐯 Tiger<br><small>Bayar 1:1</small>
+            </button>
+            <button class="roulette-btn" id="dt_tie" onclick="dtGame.selectBet('tie', 'Seri / Tie (8:1)')"
+              style="background:#065f46; border-color:#10b981; padding:12px;">
+              🤝 Seri (Tie)<br><small>Bayar 8:1</small>
+            </button>
+            <button class="roulette-btn" id="dt_suited_tie"
+              onclick="dtGame.selectBet('suited_tie', 'Suited Tie Kembang Sama (50:1)')"
+              style="background:#581c87; border-color:#a855f7; padding:12px;">
+              👑 Suited Tie<br><small>Bayar 50:1</small>
+            </button>
+          </div>
+
+          <div class="bet-control-panel" style="width: 100%; max-width: 750px;">
+            <div class="bet-selector">
+              <span class="bet-selector-label">Pilihan:</span>
+              <strong id="dtSelectedText" style="color:var(--gold-light); font-size:0.9rem;">Dragon Naga (1:1)</strong>
+            </div>
+
+            <div class="bet-chips">
+              <button class="chip-btn active" data-val="10" onclick="dtGame.setBet(10)">10</button>
+              <button class="chip-btn" data-val="50" onclick="dtGame.setBet(50)">50</button>
+              <button class="chip-btn" data-val="100" onclick="dtGame.setBet(100)">100</button>
+              <button class="chip-btn" data-val="500" onclick="dtGame.setBet(500)">500</button>
+            </div>
+
+            <button class="btn-action" id="btnDealDT" onclick="dtGame.deal()" style="padding:10px 24px;">Buka
+              Kartu</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 6. DUO FU DUO CAI (多福多财) VIEW ==================== -->
+    <section id="viewDuofu" class="view-section">
+      <div class="game-wrapper" style="border-color:#b91c1c;">
+        <div class="game-header-bar">
+          <button class="btn-back" onclick="app.showLobby()">← Kembali ke Lobby</button>
+          <div class="game-current-title" style="color:#f59e0b;">🧧 Duo Fu Duo Cai (多福多财 - 88 Fortunes VIP)</div>
+          <div class="header-spacer"></div>
+        </div>
+
+        <div class="duofu-container">
+          <!-- Jackpot Values Bar -->
+          <div class="duofu-jackpot-bar">
+            <div class="duofu-jp-badge grand">
+              <div class="duofu-jp-title" style="color:#ef4444;">GRAND JACKPOT</div>
+              <div class="duofu-jp-val" id="duofuGrandVal">10.000</div>
+            </div>
+            <div class="duofu-jp-badge major">
+              <div class="duofu-jp-title" style="color:#c084fc;">MAJOR JACKPOT</div>
+              <div class="duofu-jp-val" id="duofuMajorVal">2.500</div>
+            </div>
+            <div class="duofu-jp-badge minor">
+              <div class="duofu-jp-title" style="color:#60a5fa;">MINOR JACKPOT</div>
+              <div class="duofu-jp-val" id="duofuMinorVal">500</div>
+            </div>
+            <div class="duofu-jp-badge mini">
+              <div class="duofu-jp-title" style="color:#34d399;">MINI JACKPOT</div>
+              <div class="duofu-jp-val" id="duofuMiniVal">100</div>
+            </div>
+          </div>
+
+          <!-- Gentong Emas Rezeki -->
+          <div class="duofu-pot-wrapper" onclick="duofuGame.triggerJackpotBonus(true)" style="cursor:pointer;"
+            title="Klik untuk mengintip Gentong Emas Rezeki!">
+            <div class="duofu-pot-icon" id="duofuPotIcon">🏺</div>
+            <div>
+              <div style="font-weight:800; font-size:1.1rem; color:#fde047;">GENTONG EMAS REZEKI (FU POT)</div>
+              <div style="font-size:0.75rem; color:#fca5a5;">Wild [🧧 Fu] melempar koin ke gentong. Semakin penuh
+                gentong, peluang Jackpot Pick terbuka!</div>
+            </div>
+          </div>
+
+          <!-- Free Spins Banner -->
+          <div class="fs-banner" id="duofuFsBanner"
+            style="display:none; width:100%; max-width:850px; background:linear-gradient(90deg, #b91c1c, #d97706); border:2px solid #fde047;">
+            🔥 MODE FREE SPINS: SISA <span id="duofuFsCount">10</span> PUTARAN EMAS! (HANYA SIMBOL TINGGI)
+          </div>
+
+          <!-- 5x3 Slot Reels -->
+          <div class="duofu-slot-frame">
+            <div class="duofu-grid" id="duofuGrid"></div>
+          </div>
+
+          <div class="result-banner" id="duofuResultBanner">Pasang taruhan lalu tekan PUTAR DUOFU! 243 Cara Menang
+            (Matching dari Kiri ke Kanan).</div>
+
+          <!-- Bet Controls -->
+          <div class="bet-control-panel" style="width: 100%; max-width: 850px; flex-direction: column; gap: 10px;">
+            <!-- Row 1: Chip & Buy Free Spins -->
+            <div
+              style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; width:100%; justify-content:space-between;">
+              <div class="bet-selector">
+                <span class="bet-selector-label">Taruhan:</span>
+                <div class="bet-chips">
+                  <button class="chip-btn active" data-val="10" onclick="duofuGame.setBet(10)">10</button>
+                  <button class="chip-btn" data-val="50" onclick="duofuGame.setBet(50)">50</button>
+                  <button class="chip-btn" data-val="100" onclick="duofuGame.setBet(100)">100</button>
+                  <button class="chip-btn" data-val="250" onclick="duofuGame.setBet(250)">250</button>
+                  <button class="chip-btn" data-val="500" onclick="duofuGame.setBet(500)">500</button>
+                </div>
+              </div>
+              <button class="btn-buy-spin" onclick="duofuGame.buyFreeSpins()"
+                style="padding:10px 16px; font-size:0.85rem; border-color:#f59e0b;">
+                🔔 BELI 10 FREE SPINS<br><span style="font-size:0.65rem;">(50x Taruhan)</span>
+              </button>
+            </div>
+
+            <!-- Row 2: Spin + Auto Spin controls -->
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <button class="btn-action" id="btnSpinDuofu" onclick="duofuGame.spin()"
+                style="padding:12px 32px; font-size:1.05rem; background:linear-gradient(135deg, #f59e0b, #b91c1c); color:#fff;">
+                🎋 PUTAR DUOFU (10)
+              </button>
+
+              <!-- Auto Spin Row -->
+              <div
+                style="display:flex; align-items:center; gap:8px; background:rgba(0,0,0,0.4); border:1px solid rgba(212,175,55,0.3); border-radius:10px; padding:8px 14px;">
+                <span style="font-size:0.78rem; color:var(--text-muted); font-weight:700; white-space:nowrap;">⚡
+                  AUTO:</span>
+                <select id="duofuAutoCount" class="dream-input"
+                  style="width:80px; padding:4px 6px; font-size:0.82rem; font-family:'Orbitron'; text-align:center;">
+                  <option value="10">10×</option>
+                  <option value="25">25×</option>
+                  <option value="50">50×</option>
+                  <option value="100">100×</option>
+                  <option value="-1">∞</option>
+                </select>
+                <button id="btnAutoSpinDuofu" onclick="duofuGame.toggleAutoSpin()" style="
+                  background: linear-gradient(135deg, #10b981, #059669);
+                  border: none; border-radius: 8px; color: #fff;
+                  font-weight: 800; font-size: 0.82rem; padding: 7px 14px;
+                  cursor: pointer; white-space: nowrap; transition: all 0.2s;
+                  font-family: 'Poppins', sans-serif; letter-spacing: 0.5px;">
+                  ▶ MULAI AUTO
+                </button>
+                <span id="duofuAutoCountdown"
+                  style="font-family:'Orbitron'; font-size:0.82rem; color:#fbbf24; min-width:36px; display:none;"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 7. SPACEMAN VIEW ==================== -->
+    <section id="viewSpaceman" class="view-section">
+      <div class="game-wrapper" style="border-color:#8b5cf6;">
+        <div class="game-header-bar">
+          <button class="btn-back" onclick="app.showLobby()">← Kembali ke Lobby</button>
+          <div class="game-current-title" style="color:#c084fc;">🚀 Spaceman Crash (Astronot Terbang)</div>
+          <div class="header-spacer"></div>
+        </div>
+
+        <div class="spaceman-container">
+          <div class="space-canvas-wrapper">
+            <div class="space-multiplier-display" id="spaceMultiplierText">1.00x</div>
+            <div class="space-status-badge" id="spaceStatusText">Menunggu Peluncuran Astronot...</div>
+            <canvas id="spaceCanvas" width="750" height="340"></canvas>
+          </div>
+
+          <div class="result-banner" id="spacemanResultBanner">Tentukan taruhan lalu klik LUNCURKAN ASTRONOT!</div>
+
+          <div class="spaceman-controls-grid">
+            <button class="spaceman-btn-launch" id="btnSpacemanMain" onclick="spacemanGame.handleAction()">
+              Luncurkan Astronot (10 Chip)
+            </button>
+
+            <div class="spaceman-auto-cashout-box">
+              <label for="inputAutoCashout" style="font-size:0.85rem; color:var(--text-muted); font-weight:600;">
+                Auto Cash Out:
+              </label>
+              <input type="number" id="inputAutoCashout" class="spaceman-input-auto" placeholder="Misal 2.00" min="1.05"
+                step="0.1" value="2.00">
+            </div>
+          </div>
+
+          <div class="bet-control-panel" style="width: 100%; max-width: 750px;">
+            <div class="bet-selector">
+              <span class="bet-selector-label">Taruhan:</span>
+              <div class="bet-chips">
+                <button class="chip-btn active" data-val="10" onclick="spacemanGame.setBet(10)">10</button>
+                <button class="chip-btn" data-val="50" onclick="spacemanGame.setBet(50)">50</button>
+                <button class="chip-btn" data-val="100" onclick="spacemanGame.setBet(100)">100</button>
+                <button class="chip-btn" data-val="500" onclick="spacemanGame.setBet(500)">500</button>
+              </div>
+            </div>
+            <div style="font-size:0.85rem; color:var(--text-muted);">💡 Ambil chip sebelum astronot jatuh!</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 8. SLOT CLASSIC VIEW ==================== -->
+    <section id="viewSlot" class="view-section">
+      <div class="game-wrapper">
+        <div class="game-header-bar">
+          <button class="btn-back" onclick="app.showLobby()">← Kembali ke Lobby</button>
+          <div class="game-current-title">🎰 Golden 7s Slot Machine</div>
+          <div class="header-spacer"></div>
+        </div>
+
+        <div class="slot-machine-container">
+          <div class="slot-frame">
+            <div class="reels-wrapper">
+              <div class="reel" id="reel1">
+                <div class="reel-content">7️⃣</div>
+              </div>
+              <div class="reel" id="reel2">
+                <div class="reel-content">💎</div>
+              </div>
+              <div class="reel" id="reel3">
+                <div class="reel-content">7️⃣</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="result-banner" id="slotResultBanner">Pasang taruhan dan klik PUTAR REEL!</div>
+
+          <div class="payout-table">
+            <div class="payout-item"><span class="payout-sym">7️⃣ 7️⃣ 7️⃣</span> <span class="payout-val">100x</span>
+            </div>
+            <div class="payout-item"><span class="payout-sym">💎 💎 💎</span> <span class="payout-val">50x</span></div>
+            <div class="payout-item"><span class="payout-sym">🔔 🔔 🔔</span> <span class="payout-val">20x</span></div>
+            <div class="payout-item"><span class="payout-sym">🍋 🍋 🍋</span> <span class="payout-val">10x</span></div>
+            <div class="payout-item"><span class="payout-sym">🍒 🍒 🍒</span> <span class="payout-val">5x</span></div>
+            <div class="payout-item"><span class="payout-sym">2 Kembar</span> <span class="payout-val">2x</span></div>
+          </div>
+
+          <div class="bet-control-panel" style="width: 100%; max-width: 500px; flex-direction: column; gap: 10px;">
+            <!-- Row 1: Chip selector -->
+            <div class="bet-selector">
+              <span class="bet-selector-label">Taruhan:</span>
+              <div class="bet-chips">
+                <button class="chip-btn active" data-val="10" onclick="slotGame.setBet(10)">10</button>
+                <button class="chip-btn" data-val="50" onclick="slotGame.setBet(50)">50</button>
+                <button class="chip-btn" data-val="100" onclick="slotGame.setBet(100)">100</button>
+              </div>
+            </div>
+
+            <!-- Row 2: Spin + Auto Spin -->
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <button class="btn-action" id="btnSpinSlot" onclick="slotGame.spin()">Putar (10)</button>
+
+              <div
+                style="display:flex; align-items:center; gap:8px; background:rgba(0,0,0,0.4); border:1px solid rgba(212,175,55,0.3); border-radius:10px; padding:8px 14px;">
+                <span style="font-size:0.78rem; color:var(--text-muted); font-weight:700; white-space:nowrap;">⚡
+                  AUTO:</span>
+                <select id="slotAutoCount" class="dream-input"
+                  style="width:80px; padding:4px 6px; font-size:0.82rem; font-family:'Orbitron'; text-align:center;">
+                  <option value="10">10×</option>
+                  <option value="25">25×</option>
+                  <option value="50">50×</option>
+                  <option value="100">100×</option>
+                  <option value="-1">∞</option>
+                </select>
+                <button id="btnAutoSpinSlot" onclick="slotGame.toggleAutoSpin()" style="
+                  background: linear-gradient(135deg, #10b981, #059669);
+                  border: none; border-radius: 8px; color: #fff;
+                  font-weight: 800; font-size: 0.82rem; padding: 7px 14px;
+                  cursor: pointer; white-space: nowrap; transition: all 0.2s;
+                  font-family: 'Poppins', sans-serif; letter-spacing: 0.5px;">
+                  ▶ MULAI AUTO
+                </button>
+                <span id="slotAutoCountdown"
+                  style="font-family:'Orbitron'; font-size:0.82rem; color:#fbbf24; min-width:36px; display:none;"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 9. BLACKJACK VIEW ==================== -->
+    <section id="viewBlackjack" class="view-section">
+      <div class="game-wrapper">
+        <div class="game-header-bar">
+          <button class="btn-back" onclick="app.showLobby()">← Kembali ke Lobby</button>
+          <div class="game-current-title">🃏 Classic Blackjack (21)</div>
+          <div class="header-spacer"></div>
+        </div>
+
+        <div class="blackjack-table">
+          <div class="felt-logo">ROYAL TABLE<br><span style="font-size:0.85rem; letter-spacing:2px;">BLACKJACK PAYS
+              3:2</span></div>
+
+          <div class="bj-area">
+            <div class="bj-area-title">
+              <span>Kartu Dealer</span>
+              <span class="score-badge" id="dealerScore">Nilai: ?</span>
+            </div>
+            <div class="cards-row" id="dealerCards"></div>
+          </div>
+
+          <div class="result-banner" id="bjResultBanner">Pilih taruhan lalu klik 'BAGI KARTU'</div>
+
+          <div class="bj-area">
+            <div class="cards-row" id="playerCards"></div>
+            <div class="bj-area-title">
+              <span>Kartu Anda</span>
+              <span class="score-badge" id="playerScore">Nilai: 0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bj-actions">
+          <button class="btn-action" id="btnBjDeal" onclick="bjGame.deal()">Bagi Kartu (Deal)</button>
+          <button class="btn-action" id="btnBjHit" onclick="bjGame.hit()" disabled>Hit (+1)</button>
+          <button class="btn-action" id="btnBjStand" onclick="bjGame.stand()" disabled>Stand (Cukup)</button>
+          <button class="btn-action" id="btnBjDouble" onclick="bjGame.doubleDown()" disabled>Double (2x)</button>
+        </div>
+
+        <div class="bet-control-panel">
+          <div class="bet-selector">
+            <span class="bet-selector-label">Taruhan:</span>
+            <div class="bet-chips">
+              <button class="chip-btn active" data-val="10" onclick="bjGame.setBet(10)">10</button>
+              <button class="chip-btn" data-val="50" onclick="bjGame.setBet(50)">50</button>
+              <button class="chip-btn" data-val="100" onclick="bjGame.setBet(100)">100</button>
+              <button class="chip-btn" data-val="500" onclick="bjGame.setBet(500)">500</button>
+            </div>
+          </div>
+          <div style="font-size:0.9rem; color:var(--gold-light);">Taruhan Aktif: <strong id="bjCurrentBetDisplay">10
+              Chip</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 10. ROULETTE VIEW ==================== -->
+    <section id="viewRoulette" class="view-section">
+      <div class="game-wrapper">
+        <div class="game-header-bar">
+          <button class="btn-back" onclick="app.showLobby()">← Kembali ke Lobby</button>
+          <div class="game-current-title">🎡 European Roulette</div>
+          <div class="header-spacer"></div>
+        </div>
+
+        <div class="roulette-container">
+          <div class="wheel-canvas-container">
+            <div class="wheel-pointer"></div>
+            <canvas id="rouletteCanvas" width="300" height="300"></canvas>
+          </div>
+
+          <div class="result-banner" id="rouletteResultBanner">Pilih tipe taruhan di bawah lalu klik PUTAR!</div>
+
+          <div class="roulette-table-grid">
+            <div class="outside-bets-row">
+              <button class="roulette-btn red-bet" onclick="rouletteGame.selectBet('red', 'Merah (1:1)')">🔴 Merah
+                (1:1)</button>
+              <button class="roulette-btn black-bet" onclick="rouletteGame.selectBet('black', 'Hitam (1:1)')">⚫ Hitam
+                (1:1)</button>
+              <button class="roulette-btn" onclick="rouletteGame.selectBet('even', 'Genap (1:1)')">Genap (1:1)</button>
+              <button class="roulette-btn" onclick="rouletteGame.selectBet('odd', 'Ganjil (1:1)')">Ganjil (1:1)</button>
+            </div>
+
+            <div class="outside-bets-row">
+              <button class="roulette-btn" onclick="rouletteGame.selectBet('low', '1 - 18 (1:1)')">1 s/d 18
+                (1:1)</button>
+              <button class="roulette-btn" onclick="rouletteGame.selectBet('high', '19 - 36 (1:1)')">19 s/d 36
+                (1:1)</button>
+              <button class="roulette-btn" onclick="rouletteGame.selectBet('doz1', '1st 12 (2:1)')">1 - 12
+                (2:1)</button>
+              <button class="roulette-btn" onclick="rouletteGame.selectBet('doz2', '2nd 12 (2:1)')">13 - 24
+                (2:1)</button>
+            </div>
+
+            <div class="numbers-grid" id="rouletteNumbersGrid"></div>
+          </div>
+
+          <div class="bet-control-panel" style="width: 100%; max-width: 800px;">
+            <div class="bet-selector">
+              <span class="bet-selector-label">Pilihan:</span>
+              <strong id="rouletteSelectedText" style="color:var(--gold-light); font-size:0.9rem;">Merah (1:1)</strong>
+            </div>
+
+            <div class="bet-chips">
+              <button class="chip-btn active" data-val="10" onclick="rouletteGame.setBet(10)">10</button>
+              <button class="chip-btn" data-val="50" onclick="rouletteGame.setBet(50)">50</button>
+              <button class="chip-btn" data-val="100" onclick="rouletteGame.setBet(100)">100</button>
+            </div>
+
+            <button class="btn-action" id="btnSpinRoulette" onclick="rouletteGame.spin()">Putar Roda</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 11. BACCARAT VIEW ==================== -->
+    <section id="viewBaccarat" class="view-section">
+      <div class="game-wrapper">
+        <div class="game-header-bar">
+          <button class="btn-back" onclick="app.showLobby()">← Kembali ke Lobby</button>
+          <div class="game-current-title">🎴 Baccarat Punto Banco</div>
+          <div class="header-spacer"></div>
+        </div>
+
+        <div class="baccarat-table">
+          <div class="baccarat-hands-container">
+            <div class="baccarat-box player-side">
+              <div class="baccarat-title player">PLAYER</div>
+              <div class="cards-row" id="bacPlayerCards"></div>
+              <span class="score-badge" id="bacPlayerScore">Nilai: 0</span>
+            </div>
+
+            <div class="baccarat-box banker-side">
+              <div class="baccarat-title banker">BANKER</div>
+              <div class="cards-row" id="bacBankerCards"></div>
+              <span class="score-badge" id="bacBankerScore">Nilai: 0</span>
+            </div>
+          </div>
+
+          <div class="result-banner" id="bacResultBanner">Pilih taruhan (Player, Banker, atau Tie) lalu klik BAGI KARTU!
+          </div>
+
+          <div class="baccarat-bet-spots">
+            <button class="baccarat-bet-btn" id="betPlayer" onclick="baccaratGame.selectBet('player')">
+              <strong>PLAYER</strong>
+              <span>Bayar 1:1</span>
+            </button>
+            <button class="baccarat-bet-btn" id="betTie" onclick="baccaratGame.selectBet('tie')">
+              <strong>SERI (TIE)</strong>
+              <span>Bayar 8:1</span>
+            </button>
+            <button class="baccarat-bet-btn" id="betBanker" onclick="baccaratGame.selectBet('banker')">
+              <strong>BANKER</strong>
+              <span>Bayar 0.95:1</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="bet-control-panel">
+          <div class="bet-selector">
+            <span class="bet-selector-label">Taruhan:</span>
+            <div class="bet-chips">
+              <button class="chip-btn active" data-val="10" onclick="baccaratGame.setBet(10)">10</button>
+              <button class="chip-btn" data-val="50" onclick="baccaratGame.setBet(50)">50</button>
+              <button class="chip-btn" data-val="100" onclick="baccaratGame.setBet(100)">100</button>
+            </div>
+          </div>
+
+          <button class="btn-action" id="btnDealBac" onclick="baccaratGame.deal()">Bagi Kartu</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 12. VIDEO POKER VIEW ==================== -->
+    <section id="viewPoker" class="view-section">
+      <div class="game-wrapper">
+        <div class="game-header-bar">
+          <button class="btn-back" onclick="app.showLobby()">← Kembali ke Lobby</button>
+          <div class="game-current-title">👑 Video Poker (Jacks or Better)</div>
+          <div class="header-spacer"></div>
+        </div>
+
+        <div class="poker-container">
+          <div class="poker-paytable-scroll">
+            <div class="poker-paytable-grid" id="pokerPayGrid"></div>
+          </div>
+
+          <div class="result-banner" id="pokerResultBanner">Pasang taruhan lalu klik BAGI 5 KARTU (DEAL)!</div>
+
+          <div class="poker-hand-row" id="pokerHand"></div>
+
+          <div class="bet-control-panel" style="width: 100%; max-width: 650px;">
+            <div class="bet-selector">
+              <span class="bet-selector-label">Taruhan:</span>
+              <div class="bet-chips">
+                <button class="chip-btn active" data-val="10" onclick="pokerGame.setBet(10)">10</button>
+                <button class="chip-btn" data-val="50" onclick="pokerGame.setBet(50)">50</button>
+                <button class="chip-btn" data-val="100" onclick="pokerGame.setBet(100)">100</button>
+              </div>
+            </div>
+
+            <button class="btn-action" id="btnPokerAction" onclick="pokerGame.handleAction()">Bagi Kartu (10)</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 13. SIC BO VIEW ==================== -->
+    <section id="viewSicbo" class="view-section">
+      <div class="game-wrapper">
+        <div class="game-header-bar">
+          <button class="btn-back" onclick="app.showLobby()">← Kembali ke Lobby</button>
+          <div class="game-current-title">🎲 Lucky Sic Bo (3 Dadu)</div>
+          <div class="header-spacer"></div>
+        </div>
+
+        <div class="sicbo-container">
+          <div class="dice-shaker-dome" id="sicboDome">
+            <div class="dice-cube" id="dice1"></div>
+            <div class="dice-cube" id="dice2"></div>
+            <div class="dice-cube" id="dice3"></div>
+          </div>
+
+          <div class="result-banner" id="sicboResultBanner">Pilih taruhan di bawah lalu klik GUNCANG DADU!</div>
+
+          <div class="sicbo-bet-table">
+            <div class="sicbo-main-bets">
+              <button class="roulette-btn selected" id="sb_small"
+                onclick="sicboGame.selectBet('small', 'Kecil 4-10 (1:1)')">Kecil (4-10)<br><small>1:1</small></button>
+              <button class="roulette-btn" id="sb_big" onclick="sicboGame.selectBet('big', 'Besar 11-17 (1:1)')">Besar
+                (11-17)<br><small>1:1</small></button>
+              <button class="roulette-btn" id="sb_odd"
+                onclick="sicboGame.selectBet('odd', 'Ganjil (1:1)')">Ganjil<br><small>1:1</small></button>
+              <button class="roulette-btn" id="sb_even"
+                onclick="sicboGame.selectBet('even', 'Genap (1:1)')">Genap<br><small>1:1</small></button>
+            </div>
+
+            <div style="font-size:0.78rem; color:var(--gold-light); font-weight:700; margin-top:4px;">Taruhan Total
+              Dadu:</div>
+            <div class="sicbo-totals-grid" id="sicboTotalsGrid"></div>
+
+            <div style="display:grid; grid-template-columns: 1fr; margin-top:4px;">
+              <button class="roulette-btn" id="sb_triple"
+                onclick="sicboGame.selectBet('any_triple', 'Semua Triple 3 Dadu Kembar (30:1)')">👑 Any Triple (3 Dadu
+                Kembar) Bayar 30:1</button>
+            </div>
+          </div>
+
+          <div class="bet-control-panel" style="width: 100%; max-width: 750px;">
+            <div class="bet-selector">
+              <span class="bet-selector-label">Pilihan:</span>
+              <strong id="sicboSelectedText" style="color:var(--gold-light); font-size:0.9rem;">Kecil 4-10
+                (1:1)</strong>
+            </div>
+
+            <div class="bet-chips">
+              <button class="chip-btn active" data-val="10" onclick="sicboGame.setBet(10)">10</button>
+              <button class="chip-btn" data-val="50" onclick="sicboGame.setBet(50)">50</button>
+              <button class="chip-btn" data-val="100" onclick="sicboGame.setBet(100)">100</button>
+            </div>
+
+            <button class="btn-action" id="btnSpinSicbo" onclick="sicboGame.roll()">Guncang Dadu</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       MODAL BONUS DUO FU DUO CAI (12 KOIN EMAS REZEKI)
+       ========================================================================== -->
+  <div class="modal-backdrop" id="duofuBonusModal">
+    <div class="modal-box"
+      style="max-width: 600px; text-align: center; border-color: #ef4444; background: radial-gradient(circle at top, #3b0707 0%, #0d0404 100%);">
+      <h3 class="modal-title" style="color: #fde047; font-size: 1.5rem; margin-bottom: 6px;">🏮 BONUS JACKPOT FU BABIES
+        🏮</h3>
+      <p style="color: #fca5a5; font-size: 0.85rem; margin-bottom: 12px;">
+        Pilih 12 Koin Emas Rezeki! Cocokkan <strong>3 Bayi Keberuntungan</strong> yang sama untuk memenangkan JACKPOT!
+      </p>
+
+      <!-- Jackpot Status Counter in Bonus -->
+      <div
+        style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 16px; background: rgba(0,0,0,0.5); padding: 8px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.3);">
+        <div><strong style="color:#ef4444; font-size:0.75rem;">GRAND</strong><br><span id="pickCountGrand"
+            style="color:#fff; font-size:0.9rem; font-weight:800;">0/3</span></div>
+        <div><strong style="color:#c084fc; font-size:0.75rem;">MAJOR</strong><br><span id="pickCountMajor"
+            style="color:#fff; font-size:0.9rem; font-weight:800;">0/3</span></div>
+        <div><strong style="color:#60a5fa; font-size:0.75rem;">MINOR</strong><br><span id="pickCountMinor"
+            style="color:#fff; font-size:0.9rem; font-weight:800;">0/3</span></div>
+        <div><strong style="color:#34d399; font-size:0.75rem;">MINI</strong><br><span id="pickCountMini"
+            style="color:#fff; font-size:0.9rem; font-weight:800;">0/3</span></div>
+      </div>
+
+      <div class="duofu-coins-grid" id="duofuBonusCoinsGrid">
+        <!-- 12 coins generated by JS -->
+      </div>
+
+      <div id="duofuBonusWinAnnouncement"
+        style="display:none; margin-top: 18px; padding: 12px; background: rgba(239, 68, 68, 0.2); border: 1.5px solid #fbbf24; border-radius: 12px;">
+        <h4 id="duofuBonusWinTitle" style="color: #fde047; font-size: 1.3rem;">🎉 SELAMAT! ANDA MENANG GRAND JACKPOT!
+        </h4>
+        <p id="duofuBonusWinAmount"
+          style="color: #34d399; font-size: 1.1rem; font-weight: 800; font-family:'Orbitron'; margin: 4px 0 12px;">
+          +10.000 Chip</p>
+        <button class="btn-play" onclick="duofuGame.claimJackpot()"
+          style="background: linear-gradient(135deg, #f59e0b, #ef4444); color: #fff;">Ambil Jackpot & Lanjut</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL RIWAYAT
+       ========================================================================== -->
+  <div class="modal-backdrop" id="historyModal">
+    <div class="modal-box">
+      <button class="btn-close-modal" onclick="app.closeHistoryModal()">×</button>
+      <h3 class="modal-title">📜 Riwayat 10 Putaran Terakhir</h3>
+      <div style="overflow-x: auto; max-height: 350px;">
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th>Waktu</th>
+              <th>Game</th>
+              <th>Taruhan</th>
+              <th>Hasil</th>
+              <th>Perubahan</th>
+            </tr>
+          </thead>
+          <tbody id="historyTableBody">
+            <tr>
+              <td colspan="5" style="text-align: center; color: var(--text-muted);">Belum ada riwayat permainan.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL BANGKRUT (REFILL CHIP GRATIS)
+       ========================================================================== -->
+  <div class="modal-backdrop" id="bankruptModal">
+    <div class="modal-box" style="text-align: center;">
+      <div style="font-size: 50px; margin-bottom: 12px;">💸</div>
+      <h3 class="modal-title" style="color: var(--danger);">Chip Anda Telah Habis!</h3>
+      <p style="color: var(--text-muted); margin-bottom: 24px; font-size: 0.95rem;">
+        Jangan khawatir! Ini adalah game kasino sosial untuk hiburan tanpa uang asli. Isi ulang saldo chip gratis
+        sekarang!
+      </p>
+      <button class="btn-play" onclick="app.refillAndRestart()">🎁 Ambil +1.000 Chip Gratis</button>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer>
+    <div class="footer-disclaimer">
+      ⚠️ <strong>Hanya untuk hiburan dan seru-seruan. Tidak ada uang asli atau hadiah nyata. 18+.</strong><br>
+      Seluruh saldo, koin, dan kemenangan dalam simulator ini bersifat virtual murni.
+    </div>
+    <div class="footer-copy">
+      &copy; 2026 Royal Casino VIP Simulator & Entertainment.
+    </div>
+  </footer>
+
+  <!-- External JavaScript Engine -->
+  <script src="app.js"></script>
+</body>
+
+</html>
